@@ -1,9 +1,13 @@
 const express = require('express');
+const hbs = require('hbs');
+
+
 const app = express();
 const port = 8080;
 
 app.set('view engine', 'hbs');
 
+hbs.registerPartials(__dirname + '/views/partials');
 
 app.use(express.static('public', {
     extensions: ['html']
@@ -11,6 +15,20 @@ app.use(express.static('public', {
 
 app.get('/', (req, res) => {
     res.render('home', {
+        nombre: 'Víctor Guiérrez',
+        titulo: 'Aprendiendo Node',
+    });
+});
+
+app.get('/generic', (req, res) => {
+    res.render('generic', {
+        nombre: 'Víctor Guiérrez',
+        titulo: 'Aprendiendo Node',
+    });
+});
+
+app.get('/elements', (req, res) => {
+    res.render('elements', {
         nombre: 'Víctor Guiérrez',
         titulo: 'Aprendiendo Node',
     });
